@@ -1,0 +1,45 @@
+{
+  "$comment": "TombsPad ownership map. Read by .kiro/steering/ownership.md and .kiro/hooks/scope-guard.mjs. Owner of a path = the longest matching entry in 'paths' or 'shared'. Entries ending in '/' are folders, others are exact files. Paths that match nothing belong to 'defaultOwner'. Owned by nabotz (C); change it through a pull request.",
+  "members": {
+    "sendori": { "part": "A", "focus": "Canvas & Audio", "gitNames": ["sendori"] },
+    "zenquessence": { "part": "B", "focus": "Creatures, Movement Rules & Design", "gitNames": ["zenquessence"] },
+    "nabotz": { "part": "C", "focus": "Foundation, Sharing & Kiro", "gitNames": ["nabotz"] }
+  },
+  "defaultOwner": "nabotz",
+  "shared": [
+    "src/main.ts",
+    "package.json",
+    "package-lock.json",
+    ".kiro/specs/"
+  ],
+  "paths": {
+    "src/audio/": "sendori",
+    "src/render/scene/": "sendori",
+    "src/core/scale.ts": "sendori",
+    "tests/core/scale.test.ts": "sendori",
+    "tests/core/scale.prop.test.ts": "sendori",
+    ".kiro/specs/canvas-painting/": "sendori",
+    ".kiro/specs/audio-engine/": "sendori",
+    "docs/kiro-log/sendori.md": "sendori",
+
+    "src/core/critters/": "zenquessence",
+    "src/render/creatures/": "zenquessence",
+    "src/ui/": "zenquessence",
+    "index.html": "zenquessence",
+    "public/": "zenquessence",
+    "tests/core/critters/": "zenquessence",
+    ".kiro/specs/critters/": "zenquessence",
+    ".kiro/specs/ui-onboarding/": "zenquessence",
+    "docs/kiro-log/zenquessence.md": "zenquessence",
+
+    "src/core/model/": "nabotz",
+    "src/core/share/": "nabotz",
+    "tests/": "nabotz",
+    ".kiro/": "nabotz",
+    ".kiro/specs/core-model/": "nabotz",
+    ".kiro/specs/sharing/": "nabotz",
+    ".github/": "nabotz",
+    "docs/": "nabotz",
+    "docs/kiro-log/nabotz.md": "nabotz"
+  }
+}
