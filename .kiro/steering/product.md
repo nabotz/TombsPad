@@ -1,6 +1,6 @@
 # Product
 
-Working title: **Haunted Tunes** (placeholder, final name TBD).
+Name: **TombsPad**
 
 A browser music toy for the Kiroween 2026 hackathon, **Resurrection** category. It brings back the idea of SimTunes (Maxis, 1996): you paint colored pixels on a grid, and little critters crawl over them, playing a note each time they step on a colored cell.
 

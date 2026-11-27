@@ -1,4 +1,4 @@
-# Haunted Tunes
+# TombsPad
 
 Submission for [Kiroween 2026](https://kiroween.devpost.com/), **Resurrection** category.
 
