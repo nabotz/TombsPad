@@ -1,0 +1,15 @@
+{
+  "version": "v1",
+  "hooks": [
+    {
+      "name": "Test after spec task",
+      "trigger": "PostTaskExec",
+      "description": "After a spec task completes, runs the type check and all tests. Failures are sent to the agent; it never edits files.",
+      "action": {
+        "type": "command",
+        "command": "node .kiro/hooks/run-tests.mjs task",
+        "timeout": 180
+      }
+    }
+  ]
+}

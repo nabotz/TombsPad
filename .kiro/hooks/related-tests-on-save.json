@@ -1,0 +1,15 @@
+{
+  "version": "v1",
+  "hooks": [
+    {
+      "name": "Related tests on save",
+      "trigger": "PostFileSave",
+      "description": "When Kiro saves a .ts file under src/core or tests, runs only the tests related to that file. Other files are ignored by the script. It never edits files.",
+      "action": {
+        "type": "command",
+        "command": "node .kiro/hooks/run-tests.mjs related \"{{filePath}}\"",
+        "timeout": 120
+      }
+    }
+  ]
+}
