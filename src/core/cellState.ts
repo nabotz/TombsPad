@@ -8,7 +8,6 @@
  *   - CellId string = "col,row"
  *   - Cell value: ColorIndex (integer 0–7) | null
  */
-
 export type ColorIndex = number | null;
 export type CellState = ColorIndex[];
 

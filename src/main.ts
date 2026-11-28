@@ -1,23 +1,10 @@
-// TombsPad entry point
 import { initCanvas } from './render/scene/Canvas';
-import { decode } from './core/share';
-import { getAudioContext } from './audio/AudioEngine';
-import { initToolbar } from './ui/toolbar';
-import * as ShareLink from './core/share';
-import * as Scheduler from './scheduler/Scheduler';
-import * as AudioEngine from './audio/AudioEngine';
-import * as ScaleSystem from './core/scale';
+import { setMasterVolume } from './audio/AudioEngine';
 
-const canvasContainer = document.getElementById('canvas-container') as HTMLElement;
-const canvasAPI = initCanvas(canvasContainer);
+const container = document.getElementById('canvas-container') as HTMLElement;
+initCanvas(container);
 
-if (window.location.hash && window.location.hash.length > 1) {
-  const restored = decode(window.location.hash);
-  if (restored) canvasAPI.restoreState(restored);
-}
-
-initToolbar(canvasAPI, ShareLink, Scheduler, AudioEngine, ScaleSystem);
-
+// Trigger lazy AudioContext init on first user gesture (browser autoplay policy)
 document.addEventListener('pointerdown', () => {
-  getAudioContext();
+  setMasterVolume(0.8);
 }, { once: true });

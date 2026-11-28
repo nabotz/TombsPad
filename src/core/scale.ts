@@ -1,28 +1,51 @@
 // scale.ts — color → MIDI note mapping for TombsPad
-// Scale: A harmonic minor, A3–E5 (Halloween vibe)
+// Scales are stored as data so the user can pick between them.
 
-const SCALE_TABLE: number[] = [45, 48, 50, 52, 55, 57, 60, 64];
+export type ScaleId = 'pentatonic_minor' | 'harmonic_minor' | 'phrygian';
 
-/**
- * Map a ColorIndex (0–7) to its MIDI note number.
- * Returns null for any input outside [0, 7] or non-integer.
- */
+export interface ScaleDef {
+  id: ScaleId;
+  name: string;
+  notes: number[]; // 8 MIDI note numbers, one per color index
+}
+
+export const SCALES: Record<ScaleId, ScaleDef> = {
+  pentatonic_minor: {
+    id: 'pentatonic_minor',
+    name: 'Minor Pentatonic',
+    notes: [45, 48, 50, 52, 55, 57, 60, 64],
+  },
+  harmonic_minor: {
+    id: 'harmonic_minor',
+    name: 'Harmonic Minor',
+    notes: [57, 59, 60, 62, 64, 65, 68, 69],
+  },
+  phrygian: {
+    id: 'phrygian',
+    name: 'Phrygian',
+    notes: [52, 53, 55, 57, 59, 60, 62, 64],
+  },
+};
+
+let activeScaleId: ScaleId = 'pentatonic_minor';
+
+export function setScale(id: ScaleId): void {
+  activeScaleId = id;
+}
+
+export function getActiveScale(): ScaleDef {
+  return SCALES[activeScaleId];
+}
+
 export function colorToNote(colorIndex: number): number | null {
   if (!Number.isInteger(colorIndex) || colorIndex < 0 || colorIndex > 7) return null;
-  return SCALE_TABLE[colorIndex] ?? null;
+  return SCALES[activeScaleId].notes[colorIndex] ?? null;
 }
 
-/**
- * Returns the name of the active musical scale.
- */
 export function getScaleName(): string {
-  return 'harmonic_minor';
+  return SCALES[activeScaleId].name;
 }
 
-/**
- * Convert a MIDI note number to its frequency in Hz.
- * Uses A4 = 440 Hz as the tuning reference.
- */
 export function midiToHz(midiNote: number): number {
   return 440 * Math.pow(2, (midiNote - 69) / 12);
 }
