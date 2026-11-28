@@ -7,7 +7,16 @@ A browser music toy inspired by SimTunes (Maxis, 1996). Paint colored pixels on 
 Built with Three.js and the Web Audio API.
 
 ## Setup
-TBD
+Requires Node.js 22.13+ or 24+.
+
+```
+npm install
+npm run dev      # start the dev server
+npm test         # run unit and property-based tests once
+npm run lint     # check ESLint and Prettier (no auto-fix)
+npm run format   # apply Prettier formatting
+npm run build    # type-check and build into dist/
+```
 
 ## How Kiro was used
 - **Specs:** `.kiro/specs`
