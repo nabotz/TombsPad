@@ -8,6 +8,7 @@
   "defaultOwner": "nabotz",
   "shared": [
     "src/main.ts",
+    "index.html",
     "package.json",
     "package-lock.json",
     ".kiro/specs/"
@@ -25,7 +26,6 @@
     "src/core/critters/": "zenquessence",
     "src/render/creatures/": "zenquessence",
     "src/ui/": "zenquessence",
-    "index.html": "zenquessence",
     "public/": "zenquessence",
     "tests/core/critters/": "zenquessence",
     ".kiro/specs/critters/": "zenquessence",
