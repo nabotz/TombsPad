@@ -1,0 +1,15 @@
+# Shared files. A pull request that changes any of these needs approval from
+# one other team member (any one owner is enough; authors can't approve their own PR).
+#
+# Personal folders are intentionally not listed here. Their owners are in
+# .kiro/ownership.json. If a personal folder were listed with a single owner,
+# that owner's own pull requests could never get a code owner approval.
+
+/src/core/model/        @nabotz @sendori @zenquessence
+/src/main.ts            @nabotz @sendori @zenquessence
+/package.json           @nabotz @sendori @zenquessence
+/package-lock.json      @nabotz @sendori @zenquessence
+/.kiro/steering/        @nabotz @sendori @zenquessence
+/.kiro/hooks/           @nabotz @sendori @zenquessence
+/.kiro/ownership.json   @nabotz @sendori @zenquessence
+/.github/               @nabotz @sendori @zenquessence
