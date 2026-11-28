@@ -13,6 +13,7 @@ src/
   render/
     scene/           Three.js scene, camera, grid, painting input      [A]
     creatures/       critter models, animation, particles              [B]
+    effects/         lighting, bloom and other post-processing         [B]
   ui/                toolbar, palette, controls, onboarding            [B]
   main.ts            wires core, audio, render, and ui together        [shared, PR only]
 tests/
@@ -26,5 +27,6 @@ docs/                team docs and per-person Kiro logs
 - One module per concept. Keep files small.
 - Tests mirror source paths. `src/core/foo.ts` is tested in `tests/core/foo.test.ts` (unit) and `tests/core/foo.prop.test.ts` (property-based). `src/core/critters/move.ts` is tested in `tests/core/critters/move.test.ts`.
 - Tests are written by the owner of the code they test. Shared fast-check generators for valid states live in `tests/core/model/` [C].
+- `src/render/scene/` [A] owns the renderer, camera, and scene. It exposes them to `src/render/effects/` [B] through a function; effects code doesn't edit `scene/`.
 - Only `src/core` gets automated tests. Logic that needs tests belongs in `src/core`; code in `audio/`, `render/`, and `ui/` is checked in the browser.
 - If a new file doesn't fit an existing folder, ask before creating a new folder. A new folder also needs an entry in `.kiro/ownership.json`, which only nabotz changes.
