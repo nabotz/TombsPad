@@ -4,7 +4,10 @@
 
 The Critters system brings TombsPad to life with Halloween-themed creatures that crawl across the painted canvas, triggering musical notes as they move. This feature is the heart of the user experience, transforming static paintings into dynamic musical performances. The system must provide predictable, deterministic movement that allows users to intentionally compose melodies by designing paths through their colored cells.
 
-**Note:** This spec covers movement rules, creatures, visual effects, and placement logic. UI controls (toolbar, palette, play/pause, tempo, scale picker, share button, start screen, onboarding, critter type picker, direction selector, special cell palette) are covered in a separate spec: ui-onboarding (also owned by B/zenquessence).
+design.md is too long for a 3-day build. Trim it to what the MVP
+needs: remove duplicated explanations, keep module APIs, data shapes,
+algorithms and the testing strategy. Keep stretch goals brief. Edit
+only .kiro/specs/critters/design.md.**Note:** This spec covers movement rules, creatures, visual effects, and placement logic. UI controls (toolbar, palette, play/pause, tempo, scale picker, share button, start screen, onboarding, critter type picker, direction selector, special cell palette) are covered in a separate spec: ui-onboarding (also owned by B/zenquessence).
 
 ## Glossary
 
@@ -15,7 +18,7 @@ The Critters system brings TombsPad to life with Halloween-themed creatures that
 - **Beat**: A unit of musical time controlled by the audio scheduler from Part A
 - **Direction**: One of four cardinal directions (up, down, left, right) that a critter faces and moves toward (no diagonal directions)
 - **Boundary_Behavior**: How a critter responds when reaching the edge of the grid
-- **Special_Cell**: A cell with Halloween-themed properties that modify critter behavior (tombstone, web, candle, portal)
+- **Part_B**: The critters, movement rules, creature rendering, lighting and post-processing in src/render/effects/ owned by zenquessence (this spec)rtal)
 - **Critter_Type**: One of four creatures, each with unique visual appearance and optional unique movement behavior
 - **Part_A**: The audio engine, canvas painting and pointer/raycast system in src/render/scene/, and scale/tempo functions owned by sendori
 - **Part_B**: The critters, movement rules, creature rendering, and visual effects owned by zenquessence (this spec)
@@ -119,7 +122,8 @@ The Critters system brings TombsPad to life with Halloween-themed creatures that
 3. THE Scene_Lighting SHALL ensure all critters and cells are clearly visible against the background
 4. THE Visual_Effects_System SHALL render particle effects when note events are received without causing frame drops below 30fps on target hardware
 5. THE Visual_Effects_System SHALL implement effects using Three.js particle systems or shaders
-6. THE Scene_Lighting and Visual_Effects_System SHALL be implemented in `src/render/creatures/effects/`
+6. THE Scene_Lighting and post-processing effects SHALL be implemented in `src/render/effects/` (owned by Part B)
+7. THE particle effects for creature note triggers SHALL be implemented in `src/render/creatures/` alongside creature models
 
 ### Requirement 8: Special Halloween Cells (Stretch Goal - Priority 1)
 
@@ -157,6 +161,8 @@ The Critters system brings TombsPad to life with Halloween-themed creatures that
 **Critter_Placement_Logic Implementation**: The Critter_Placement_Logic SHALL be implemented as pure TypeScript functions in src/core/critters/ with no DOM, UI, or side effects. These functions SHALL be callable from UI event handlers (owned by ui-onboarding spec) or from automated tests.
 
 **Cell_Clicked_Event from Part A**: The Critter_Placement_Logic depends on Part A's pointer/raycast system in `src/render/scene/` to provide Cell_Clicked_Event with grid coordinates (x, y) when a user clicks a cell. Part A owns the raycast and pointer handling; Part B owns the placement logic that responds to these events.
+
+**Scene Access for Effects**: Part A's code in `src/render/scene/` SHALL expose the Three.js renderer, camera, and scene objects to Part B through a getter function (e.g., `getSceneContext()`). Part B's effects code in `src/render/effects/` SHALL consume these objects for lighting and post-processing setup but MUST NOT modify `src/render/scene/` files. Part A owns scene initialization; Part B owns effects that operate on that scene.
 
 **Day 1 blocker**: Movement implementation cannot begin until Part C delivers the shared data model in `src/core/model/`. Temporary types may be used in the interim with clear comments marking them for replacement.
 
