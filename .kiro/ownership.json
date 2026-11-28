@@ -25,6 +25,7 @@
 
     "src/core/critters/": "zenquessence",
     "src/render/creatures/": "zenquessence",
+    "src/render/effects/": "zenquessence",
     "src/ui/": "zenquessence",
     "public/": "zenquessence",
     "tests/core/critters/": "zenquessence",
