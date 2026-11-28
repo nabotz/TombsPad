@@ -17,7 +17,7 @@ src/
   main.ts            wires core, audio, render, and ui together        [shared, PR only]
 tests/
   core/              mirrors src/core
-index.html                                                             [B]
+index.html           Vite entry page; loads src/main.ts, no design     [shared, PR only]
 public/              static assets                                     [B]
 docs/                team docs and per-person Kiro logs
 .kiro/               specs, steering, hooks, ownership map (must stay committed)
