@@ -1,0 +1,36 @@
+{
+  "members": [
+    {
+      "name": "sendori",
+      "gitNames": ["sendori", "SENDORI"],
+      "owns": [
+        "src/core/scale.ts",
+        "src/core/cellState.ts",
+        "src/core/share.ts",
+        "src/render/**",
+        "src/audio/**",
+        "src/scheduler/**",
+        "src/ui/**",
+        "src/main.ts",
+        "tests/core/scale.prop.test.ts",
+        "tests/core/cellState.prop.test.ts",
+        "tests/core/share.prop.test.ts",
+        "docs/kiro-log/sendori.md"
+      ]
+    },
+    {
+      "name": "nabotz",
+      "gitNames": ["nabotz"],
+      "owns": [
+        ".kiro/**",
+        "package.json",
+        "tsconfig.json",
+        "vite.config.js",
+        "index.html",
+        "README.md",
+        "LICENSE",
+        ".gitignore"
+      ]
+    }
+  ]
+}

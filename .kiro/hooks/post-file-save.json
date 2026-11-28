@@ -1,0 +1,16 @@
+{
+  "hooks": [
+    {
+      "name": "post-file-save",
+      "description": "Run related tests when a core or test file is saved",
+      "trigger": "PostFileSave",
+      "filePatterns": ["src/core/**", "src/audio/**", "src/render/**", "tests/**"],
+      "steps": [
+        {
+          "type": "shell",
+          "command": "npm test"
+        }
+      ]
+    }
+  ]
+}
